@@ -68,15 +68,15 @@ const StartPage: FC<StartPageProps> = ({ navigation }) => {
               <View style={styles.selectButtons}>
                 <Pressable
                   onPress={() => handlePlayWith(true)}
-                  style={styles.buttonSelect_X}
+                  style={[styles.buttonSelect, playWithX ? {borderColor: Colors.secondry} : {borderColor: Colors.third}]}
                 >
                   <Text style={styles.buttonTitle}>Play with X</Text>
                 </Pressable>
                 <Pressable
                   onPress={() => handlePlayWith(false)}
-                  style={styles.buttonSelect_0}
+                  style={[styles.buttonSelect, !playWithX ? {borderColor: Colors.secondry} : {borderColor: Colors.third}]}
                 >
-                  <Text style={styles.buttonTitle}>Play with 0</Text>
+                  <Text style={styles.buttonTitle}>Play with O</Text>
                 </Pressable>
               </View>
             </View>
@@ -144,22 +144,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
-  buttonSelect_X: {
+  buttonSelect: {
     justifyContent: "center",
     alignSelf: "center",
     width: 105,
     padding: 16,
     backgroundColor: Colors.third,
     borderRadius: 8,
-  },
-
-  buttonSelect_0: {
-    justifyContent: "center",
-    alignSelf: "center",
-    width: 105,
-    padding: 16,
-    backgroundColor: Colors.third,
-    borderRadius: 8,
+    borderWidth: 1,
   },
 
   button: {

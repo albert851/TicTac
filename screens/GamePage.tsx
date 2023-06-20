@@ -119,7 +119,7 @@ const GamePage: FC<GamePageProps> = ({ navigation, route }) => {
     } else if (emptyFields == 0) {
       alert("Draw");
 
-      handleNewGame()
+      handleNewGame();
     }
   };
 
@@ -137,7 +137,7 @@ const GamePage: FC<GamePageProps> = ({ navigation, route }) => {
         setComputerScore(computerScore + 1);
       }
     } else {
-      if (index == "0") {
+      if (index == "O") {
         alert(`${playerName} won`);
         setPlayerScore(playerScore + 1);
       } else {
@@ -146,7 +146,7 @@ const GamePage: FC<GamePageProps> = ({ navigation, route }) => {
       }
     }
 
-    handleNewGame()
+    handleNewGame();
   };
 
   const handleReset = () => {
@@ -157,27 +157,25 @@ const GamePage: FC<GamePageProps> = ({ navigation, route }) => {
   const handleNewGame = async () => {
     setBoard((prevStage) => [" ", " ", " ", " ", " ", " ", " ", " ", " "]);
     setEmptyFields((prevState) => 8);
-
-    // if(computerIndex == "X"){
-    //   computerTurn()
-    // }
   };
 
   useEffect(() => {
     if (player) {
       setPlayerIndex("X");
-      setComputerIndex("0");
+      setComputerIndex("O");
     } else {
-      setPlayerIndex("0");
+      setPlayerIndex("O");
       setComputerIndex("X");
     }
   }, []);
 
   useEffect(() => {
-    if (computerIndex == "X") {
-      computerTurn();
+    if (emptyFields === 8) {
+      if (computerIndex == "X") {
+        computerTurn();
+      }
     }
-  }, [computerIndex]);
+  }, [computerIndex, board]);
 
   return (
     <LinearGradient
